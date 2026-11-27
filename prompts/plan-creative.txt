@@ -1,0 +1,57 @@
+Here is my whole forms file.
+
+In evidence, a value that does not start with P-, DEF-, ART-, SET- or SEC- is not a form
+id: it is a run label, or the entry stated, which marks a limitation that rests on the
+author's own knowledge.
+
+Targets: <section ids or form ids>
+Text to write: <a methods section, a summary for a general audience, …>
+Mode: creative
+Lead with: <form ids, or leave empty>
+
+Length: <words for the abstract or the whole text, or leave empty>
+
+The mode decides only whether invented sentences, stand-ins and gist are allowed.
+
+Do not write the text yet. Return a plan:
+- the headings of the text as a tree, sections with their subsections, laid out the
+  way this kind of text is normally laid out. A paper on several pieces of work gets
+  one section per piece, each with the subsections a reader expects (method, results,
+  and where there is something to say, limitations and interpretation);
+- for each heading: one line saying what the part is to get across, and the ids of
+  the forms it reports, in the order they will appear. Results parts open with a
+  claim where there is one;
+- the tables: parallel things (stages, models with the same settings, the same
+  measurement for several runs) go in a table. For each table: its rows, its columns
+  and the forms that fill it;
+- for each top-level section, the limitations that cover a form it reports and the
+  assumptions that a claim in it rests on, and where they will be stated;
+- for an abstract: its length (at most 200 words unless Length says otherwise) and
+  the few forms it reports, which are the Lead with forms;
+- the targets you leave out and those you only summarise, each with a reason.
+
+You may leave out a target. You may not leave out a limitation that covers a form the
+text reports, or an assumption that a reported claim rests on, unless it has
+surface: no. Every line of the plan names forms; the plan adds no content of its own.
+A form outside the targets may appear only where a target needs it: a def for a term,
+a setup or artifact for a value, a limitation that covers a target, an assumption or
+another form that a target rests on.
+
+A limitation covers the forms named in its affects and every form that rests on one of
+them, through any number of steps: a claim rests on the forms in its derived_from, a
+result on the forms in its evidence, a setup on the forms in its includes and
+components. Sections play no part. A refuted limitation covers nothing. An abstract or
+summary of a text with a body must state every major limitation that covers something
+it reports; a minor one may be left out there if the body states it. A limitation
+without severity is minor.
+
+This is a creative rendering. Its purpose is to get the gist across: what was found,
+how sure it is and what is still open. Among the targets, it reports the claims,
+limitations, assumptions and open questions. A result or setup appears only where one
+of those needs it, or where you list it in the plan. A scene is a passage: plan the
+limitations and assumptions for each scene as for a top-level section.
+
+Do not put right what the forms leave wrong or unfinished. An open question stays
+unanswered. A limitation stays in force and is not overcome in the plot. A refuted form
+stays wrong. A preliminary claim or limitation stays uncertain. A weak or failed result is
+not turned into a success. The ending resolves nothing that the forms do not resolve.

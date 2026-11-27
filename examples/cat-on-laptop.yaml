@@ -1,0 +1,149 @@
+spec: v1
+# A made-up example for trying out plan, expand and check. Professor Biscuit is not a
+# real cat, there is no cat-study repository, and nothing here was ever measured.
+component_keys:
+  data: "the input the stage runs over (documents, records or rows), with its selection and ordering"
+  method: "the decision rule or algorithm the stage applies, including how items are matched"
+
+sections:
+
+  # ══════════════════════════════════════════════════════════════
+  # SEC-cat-laptop — Why the cat sits on the laptop
+  # ══════════════════════════════════════════════════════════════
+  - id: SEC-cat-laptop
+    type: section
+    title: "Why the cat sits on the laptop"
+    about: "Everything about counting how often Professor Biscuit lies on the laptop keyboard, and why."
+    links: []
+    status: drafting
+    updated: 2026-11-27
+    forms:
+
+      - id: DEF-keyboard-occupancy
+        type: def
+        term: "keyboard occupancy"
+        definition: "A stretch of at least 60 seconds in which the cat sat or lay on the laptop keyboard."
+        use: ["keyboard occupancy", "occupancy"]
+        avoid: ["typing", "co-authoring"]
+        why_avoid: "The cat leaves keystrokes but has shown no intent to write; these words credit him with authorship."
+        status: established
+        updated: 2026-11-20
+
+      - id: ART-webcam-log
+        type: artifact
+        path: "cat-study/data/webcam_log.csv"
+        version: "cat-study-v0.1"
+        status: current
+        updated: 2026-11-16
+        note: >
+          One row per second: timestamp, whether the laptop was switched on, and the
+          cat's bounding box if the webcam saw him. 14 days, 1 to 14 November 2026.
+
+      - id: ART-occupancy-counter
+        type: artifact
+        path: "cat-study/count_occupancy.py"
+        version: "cat-study-v0.1"
+        entrypoint: "python cat-study/count_occupancy.py --log cat-study/data/webcam_log.csv --out cat-study/results/<run-date>/occupancy.json"
+        produces: ["cat-study/results/<run-date>/occupancy.json"]
+        status: current
+        updated: 2026-11-16
+
+      - id: SET-occupancy-v1
+        type: setup
+        part_of: [ART-occupancy-counter]
+        script: "cat-study/count_occupancy.py"
+        components:
+          data: ART-webcam-log
+          method: "count a keyboard occupancy when the cat's bounding box overlaps the keyboard for 60 seconds or longer"
+        status: current
+        updated: 2026-11-16
+
+      - id: P-occupancy-on
+        type: result
+        statement: "The cat occupied the keyboard of the switched-on laptop 23 times."
+        scope: "One cat, one laptop, 14 days; the laptop was switched on for the same number of hours each day as it was switched off."
+        evidence: [ART-occupancy-counter, ART-webcam-log, SET-occupancy-v1, run-2026-11-16]
+        not_supported: "Says nothing about what the cat wanted from the laptop."
+        status: established
+        updated: 2026-11-16
+
+      - id: P-occupancy-off
+        type: result
+        statement: "The cat occupied the keyboard of the switched-off laptop 2 times."
+        scope: "One cat, one laptop, 14 days; the laptop was switched on for the same number of hours each day as it was switched off."
+        evidence: [ART-occupancy-counter, ART-webcam-log, SET-occupancy-v1, run-2026-11-16]
+        not_supported: "Does not show that the cat avoids switched-off laptops."
+        status: established
+        updated: 2026-11-16
+
+      - id: P-prefers-on
+        type: claim
+        statement: >
+          The cat occupied the keyboard more often when the laptop was switched on than
+          when it was switched off.
+        derived_from: [P-occupancy-on, P-occupancy-off]
+        not_supported: "Does not say why."
+        status: established
+        updated: 2026-11-20
+
+      - id: P-cats-like-warmth
+        type: claim
+        statement: "Cats seek out warm surfaces to lie on."
+        not_supported: "Does not say that cats prefer laptops to other warm surfaces."
+        status: unsourced
+        updated: 2026-11-20
+        note: >
+          Everyone with a cat believes this. Looked in two veterinary textbooks so far,
+          no luck. Next: ask the vet at the November check-up.
+
+      - id: P-keyboard-warmer
+        type: assumption
+        statement: "The keyboard of the switched-on laptop is warmer than that of the switched-off laptop."
+        basis: >
+          Laptops warm up while they run. Not measured here: the only thermometer in
+          the house was knocked off the shelf by the cat.
+        breaks_if: "The laptop's fan keeps the keyboard at room temperature."
+        status: assumed
+        updated: 2026-11-27
+
+      - id: P-warmth-explains
+        type: claim
+        statement: "The warmth of the switched-on laptop draws the cat to its keyboard."
+        derived_from: [P-prefers-on, P-cats-like-warmth, P-keyboard-warmer]
+        not_supported: "Does not say that other cats are drawn to laptop keyboards."
+        status: preliminary
+        updated: 2026-11-27
+
+      - id: P-author-present
+        type: limitation
+        statement: >
+          The author sat at the laptop whenever it was switched on and was away whenever
+          it was switched off.
+        affects: [P-warmth-explains]
+        evidence: [stated]
+        severity: major
+        status: established
+        updated: 2026-11-20
+
+      - id: P-webcam-knocked-over
+        type: limitation
+        statement: "3 hours 40 minutes of day 9 are missing from the webcam log, all of it from hours when the laptop was switched off."
+        affects: [P-occupancy-on, P-occupancy-off]
+        evidence: [ART-webcam-log]
+        status: established
+        updated: 2026-11-27
+        note: "The cat knocked the webcam over."
+
+      - id: P-warmth-or-attention
+        type: open
+        statement: "Whether the cat seeks the warmth of the laptop or the attention of the person using it."
+        status: open
+        updated: 2026-11-20
+
+      - id: SET-heating-pad-v1
+        type: setup
+        components:
+          method: "warm the switched-off laptop with a heating pad set to 35 °C while the author is out of the room"
+        status: planned
+        updated: 2026-11-20
+        note: "Planned to answer P-warmth-or-attention. The heating pad is currently occupied by the cat."

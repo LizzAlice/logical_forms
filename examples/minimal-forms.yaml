@@ -1,0 +1,184 @@
+spec: v1
+component_keys:
+  data: "the input the stage runs over (documents, records or rows), with its selection and ordering"
+  method: "the decision rule or algorithm the stage applies, including how items are matched"
+  scoring: "how one output is compared against the gold standard"
+  metric: "the summary numbers computed from the scored outputs"
+
+sections:
+
+  # ══════════════════════════════════════════════════════════════
+  # SEC-pdf-defs — Extracting definitions from PDFs
+  # ══════════════════════════════════════════════════════════════
+  - id: SEC-pdf-defs
+    type: section
+    title: "Extracting definitions from PDFs"
+    about: "Everything about pulling definitional statements out of PDF sources."
+    links:
+      - {to: SEC-eval, rel: builds_on, why: "P-gold-precision is scored with the setup defined there"}
+    status: drafting
+    updated: 2026-09-17
+    forms:
+
+      - id: DEF-definition-candidate
+        type: def
+        term: "definition candidate"
+        definition: "A sentence flagged by the extractor as possibly defining a term."
+        use: ["definition candidate", "candidate"]
+        avoid: ["definition", "extracted definition"]
+        why_avoid: "Candidates are unverified; the bare noun implies they were checked."
+        status: established
+        updated: 2026-09-10
+
+      - id: ART-corpus
+        type: artifact
+        path: "pdf-defs/corpus/"
+        version: "forms-2026-09-12"
+        status: current
+        updated: 2026-09-12
+
+      - id: ART-extractor
+        type: artifact
+        path: "pdf-defs/extract/pdf_defs.py"
+        version: "forms-2026-09-12"
+        entrypoint: "python pdf-defs/extract/pdf_defs.py --in pdf-defs/corpus/ --out pdf-defs/out/candidates.jsonl"
+        produces: ["pdf-defs/out/candidates.jsonl"]
+        status: current
+        updated: 2026-09-12
+
+      - id: SET-extract-v1
+        type: setup
+        part_of: [ART-extractor]
+        script: "pdf-defs/extract/pdf_defs.py"
+        components:
+          data: ART-corpus
+          method: "flag a sentence in which a term is followed by 'is defined as', 'refers to' or 'means'"
+        status: current
+        updated: 2026-09-12
+
+      - id: P-candidate-yield
+        type: result
+        statement: "The extractor produced 612 definition candidates from 80 PDFs."
+        scope: "Born-digital PDFs only; no scanned documents."
+        evidence: [ART-extractor, ART-corpus, SET-extract-v1, run-2026-09-12]
+        not_supported: "Says nothing about how many candidates are genuine definitions."
+        status: established
+        updated: 2026-09-12
+
+      - id: P-yield-single-column
+        type: result
+        statement: "The extractor produced 498 definition candidates from the 56 single-column PDFs."
+        scope: "Born-digital PDFs only; layout labelled by hand."
+        evidence: [ART-extractor, ART-corpus, SET-extract-v1, run-2026-09-12]
+        not_supported: "Says nothing about how many candidates are genuine definitions."
+        status: established
+        updated: 2026-09-12
+
+      - id: P-yield-two-column
+        type: result
+        statement: "The extractor produced 114 definition candidates from the 24 two-column PDFs."
+        scope: "Born-digital PDFs only; layout labelled by hand."
+        evidence: [ART-extractor, ART-corpus, SET-extract-v1, run-2026-09-12]
+        not_supported: "Does not show that the two-column layout causes the lower count."
+        status: established
+        updated: 2026-09-12
+
+      - id: P-layout-sensitivity
+        type: claim
+        statement: >
+          The extractor produced fewer definition candidates per PDF from the two-column
+          PDFs than from the single-column PDFs.
+        derived_from: [P-yield-single-column, P-yield-two-column]
+        not_supported: "Does not say that the layout is the cause."
+        status: established
+        updated: 2026-09-12
+
+      - id: P-gold-precision
+        type: result
+        statement: >
+          41 of the 54 gold-set sentences that the extractor flagged as definition
+          candidates were labelled as definitions.
+        scope: "The 120 sentences of the gold set, taken from 12 born-digital PDFs."
+        evidence: [SET-eval-pipeline-v1, run-2026-09-12]
+        not_supported: "Says nothing about candidates outside the gold set."
+        status: established
+        updated: 2026-09-12
+
+      - id: P-corpus-representative
+        type: assumption
+        statement: "The 80 PDFs reflect the layout variety of the target literature."
+        basis: >
+          The PDFs were hand-picked to cover the layouts seen in the target literature.
+          Not tested here: surveying the layouts of the whole literature is outside the
+          scope of this work.
+        breaks_if: "The target corpus is mostly scanned."
+        status: assumed
+        updated: 2026-09-05
+
+      - id: P-scanned-pdfs
+        type: open
+        statement: "Whether OCR output can be fed to the same extractor without changes."
+        status: open
+        updated: 2026-09-12
+
+  # ══════════════════════════════════════════════════════════════
+  # SEC-eval — Evaluation setup
+  # ══════════════════════════════════════════════════════════════
+  - id: SEC-eval
+    type: section
+    title: "Evaluation setup"
+    about: "How extraction output is scored: gold set, metrics, configurations."
+    links: []
+    status: drafting
+    updated: 2026-09-17
+    forms:
+
+      - id: ART-gold-set
+        type: artifact
+        path: "pdf-defs/eval/gold.jsonl"
+        version: "forms-2026-09-12"
+        status: current
+        updated: 2026-09-12
+
+      - id: P-gold-set-size
+        type: result
+        statement: "The gold set contained 120 hand-labelled sentences from 12 PDFs."
+        scope: "All sentences in the gold set."
+        evidence: [ART-gold-set]
+        status: established
+        updated: 2026-09-17
+
+      - id: ART-scorer
+        type: artifact
+        path: "pdf-defs/eval/score.py"
+        version: "forms-2026-09-12"
+        entrypoint: "python pdf-defs/eval/score.py --pred pdf-defs/out/candidates.jsonl --gold pdf-defs/eval/gold.jsonl"
+        produces: ["pdf-defs/out/scores.json"]
+        status: current
+        updated: 2026-09-12
+
+      - id: SET-scoring-v1
+        type: setup
+        part_of: [ART-scorer]
+        script: "pdf-defs/eval/score.py"
+        follows: [SET-extract-v1]
+        components:
+          data: ART-gold-set
+          scoring: "a flagged sentence counts as correct if its gold label is definition"
+          metric: "precision"
+        status: current
+        updated: 2026-09-12
+
+      - id: SET-eval-pipeline-v1
+        type: setup
+        includes: [ART-corpus, ART-extractor, SET-extract-v1, ART-gold-set, ART-scorer, SET-scoring-v1]
+        status: current
+        updated: 2026-09-12
+
+      - id: P-single-annotator
+        type: limitation
+        statement: "The gold set was labelled by a single annotator."
+        affects: [SET-scoring-v1]
+        evidence: [stated]
+        status: established
+        updated: 2026-09-08

@@ -1,0 +1,168 @@
+Here is my whole forms file and the plan I approved.
+
+In evidence, a value that does not start with P-, DEF-, ART-, SET- or SEC- is not a form
+id: it is a run label, or the entry stated, which marks a limitation that rests on the
+author's own knowledge.
+
+Targets: <section ids or form ids>
+Text to write: <a methods section, a summary for a general audience, …>
+Mode: creative
+
+Write the text the plan describes. Report only forms the plan lists.
+
+The text has two kinds of sentence:
+- A carrying sentence says something the forms say and cites their ids in square
+  brackets: "... 33 of 40 executed [P-exec-rate]." One sentence may carry several
+  forms, and one form may be spread over several sentences.
+- A link sentence helps the reader along: it announces what comes next, refers back to
+  something the text already said, or marks a change of topic. Mark it [link] in place
+  of an id. It must not state or imply anything that a form could support or
+  contradict: no number, no outcome, no cause, no comparison, no judgement.
+This is a creative rendering. Its purpose is to get the gist across: what was found,
+how sure it is and what is still open.
+
+Report the claims, limitations, assumptions and open questions the plan lists. A result
+or setup appears only where one of those needs it or the plan lists it.
+
+There is a third kind of sentence: a framing sentence, invented for the story and
+marked [frame]. It gives the setting, the characters and their manner. It must not
+state or imply anything that a form could support or contradict: no number, no
+outcome, no cause, no judgement about anything the forms describe.
+
+Gist. A carrying sentence may say less than the form:
+- You may leave out numbers, paths, versions and ids. Never round or approximate: give
+  a number as the form gives it or not at all.
+- Make a qualitative statement (a comparison, a direction, "higher", "most", "small")
+  only where a form states it in those terms. Do not read a comparison or trend off
+  results yourself.
+- The forms must say everything the sentence says. The sentence may leave things out,
+  but must not turn a hedged or limited statement into a plain one.
+
+Stand-ins. You may replace real things by stand-ins. Begin the draft with a mapping
+table: stand-in | stands for (form id or term). One stand-in per thing and one thing
+per stand-in, throughout. What a stand-in does or undergoes in a carrying sentence is
+what the forms say of the thing it stands for, and the sentence cites those forms.
+Framing sentences may give a stand-in looks, a voice and a mood, but no acts or
+fortunes that would say something about the thing it stands for. A stand-in may not be
+a string from an avoid list.
+
+Rules 2 and 6 hold as they are; a scene is a passage.
+
+Do not put right what the forms leave wrong or unfinished. An open question stays
+unanswered. A limitation stays in force and is not overcome in the plot. A refuted form
+stays wrong. A preliminary claim or limitation stays uncertain. A weak or failed result is
+not turned into a success. The ending resolves nothing that the forms do not resolve.
+
+A passage is the text under one top-level heading with its subsections; without
+headings, a paragraph. An abstract or summary is a passage of its own.
+
+Shape. Follow the plan's headings and tables. Open a results part with what was found,
+in the words of a claim where there is one, then give the numbers. Put parallel things
+in the planned tables and do not repeat every cell in prose. Method prose says what
+happens in which order. The abstract says why, what was done and the main findings,
+with no setup values, within the planned length. Shape never adds content: where the
+forms give too little for the text to hang together, keep it short there and list the
+gap under "Proposed forms".
+
+Rules:
+1. Every sentence is a carrying sentence or a link sentence. A carrying sentence can
+   state the statement of a result, claim, assumption, limitation or open, a result's
+   scope, an assumption's basis or breaks_if, the definition of a def, or a field
+   value of an artifact or setup (a path, a version, a component value), and it cites
+   that form's id. Never expand or quote a note field.
+2. Register follows status. For results, claims, assumptions, limitations and opens:
+   - established → plain assertion
+   - preliminary → hedged. A preliminary claim also needs the scope of the results
+     under it, in the sentence or earlier in the same passage
+   - assumed → explicitly marked as an assumption. The sentence may give the
+     assumption's basis and breaks_if, and adds nothing beyond them. State an
+     assumption in every text that reports a claim resting on it, directly or through
+     other claims. The exception is surface: no: do not write such an assumption out,
+     but it still limits what the claims resting on it may assert
+   - unsourced → always with a visible marker: "[CITATION NEEDED: <id>]". A sentence
+     that reports a claim resting on an unsourced one, directly or through other
+     claims, carries the same marker with the id of the unsourced form
+   - open → open question or future work only, never a finding
+   - closed → not written. Do not pull in the forms that answer it
+   - refuted → not written at all, except as an explicit correction
+   - outdated → never written as a finding about the current work. Report it only as
+     what held for the earlier setup or artifact version, named as such
+   - resolved → written only as the hedge on a result or claim it covers (rule 6), in
+     the past tense
+   For artifacts, setups and defs, which a sentence can name or use:
+   - current, and established for a def → named and used normally
+   - superseded → named only as the earlier version that a cited result was produced
+     with
+   - planned → future work only
+   - retired → not used; a retired def no longer governs wording
+   Sections are never written out.
+3. Copy numbers, paths, versions and names verbatim. Never round, reformat, convert or
+   spell out: 10 stays 10.
+4. A sentence must not exceed the scope of the forms it rests on, and must not assert
+   anything listed in their not_supported. For a claim, the governing scope is that of
+   the results underneath it, followed transitively through derived_from. A claim with
+   no result underneath it has no such scope: stay within its statement and its
+   not_supported.
+5. Terms follow def: call the thing a def's term names by a string from use, never by
+   one from avoid. An avoid string is only forbidden as a name for that thing, and not
+   inside a string from use. Ignore defs with status retired.
+6. A limitation covers the forms named in its affects and every form that rests on one
+   of them, through any number of steps: a claim rests on the forms in its
+   derived_from, a result on the forms in its evidence, a setup on the forms in its
+   includes and components. Sections play no part. A refuted limitation covers nothing.
+   State a limitation once in every passage that reports a result or claim it covers,
+   at or before the first such sentence, and make its reach clear ("all scores in this
+   section"). Do not repeat it later in the passage. A limitation with severity: major
+   gets a sentence of its own in each such passage; others may share a sentence. A
+   sentence that only states a value of a setup or artifact needs no hedge.
+   In an abstract or summary of a text with a body: state every major limitation
+   that covers something it reports; a minor one may be left out there if the body
+   states it. A limitation without severity is minor. Keep every hedge and scope
+   that rule 2 asks for.
+7. Add nothing that is not in a form. If the text needs a bridging fact or a reason
+   that no form gives, leave that sentence out, continue, and list a proposed new form
+   under "Proposed forms" after the text.
+8. Do not correct, complete or improve what the forms say, even where a form looks
+   wrong or contradicts what you know. Write what the form says, and list the form's
+   id with your reason under "Possible errors" after the text.
+9. Wording. Change the structure, keep the words that carry the meaning.
+   Free: the order of forms and clauses, sentence boundaries, merging several forms
+   into one sentence or spreading one over several, active or passive voice, the
+   grammatical person, pronouns for things already named.
+   Not to change: numbers, paths, versions, names and def terms; the content words of
+   a statement (its verb, and the nouns and adjectives that say what it is about: no
+   synonyms, so "scored highest" does not become "performed best"); the small words
+   that set its reach (all, none, 4 of 7, not, only, at least, at most, alone or tied,
+   comparatives and superlatives, may, must, and qualifiers such as "recorded as");
+   the past tense of a result.
+   The form must say everything your sentence says, and your sentence must not leave
+   out a part of the form whose absence changes what a reader takes away.
+   When one sentence carries several forms, or sums up forms already reported, each
+   form's statement stays complete, with every part that sets its reach. A short
+   label for a form ("the doubled gain") must pass the same test. If the complete
+   statements do not fit into one sentence, use several.
+   Copy a form that has wording: fixed word for word.
+10. Relations. You may say how two forms relate only where a field records it, and you
+    then cite both: derived_from (the claim follows from or rests on those forms;
+    hedged for a preliminary claim: "suggests", not "shows"), evidence (measured
+    with), follows (runs after), uses (calls), includes (ran together), affects (the
+    limitation applies to), resolved_by, replaced_by, answered_by. State no other
+    relation. If the text needs one, propose a claim (rule 7).
+    Check these three against the fields before you write them:
+    - words of reason and consequence: so, therefore, thus, hence, because, since, as
+      a result, which is why, despite, although. Also inside one form: where the
+      statement has a semicolon or "and" between its halves, do not write "so";
+    - "this suggests", "this shows", "it follows": "this" points at the sentence
+      before, which must report a form in the claim's derived_from. Where the claim
+      rests on several forms, name them all;
+    - an opening "So" or "therefore" before a step ("So we repeated the scoring")
+      gives a reason for the step. "Then" and "next" give only an order.
+    "And", "also", "then" and a full stop state no relation and are always safe.
+11. Tables. Every rule applies to a table. Give each row a last column "forms" with
+    the ids it reports. Row label, column header and cell together must say what the
+    form says (rule 9): the header carries what the column's cells share, the row
+    label what the row's cells share, the cell the rest, including a qualifier that
+    holds for that cell only. Numbers and names verbatim. Fill no cell that no form
+    fills; compute, average or carry over nothing. The caption says what rows and
+    columns are. A limitation that covers a form in the table is stated in the same
+    passage at or before the table, or in the caption.

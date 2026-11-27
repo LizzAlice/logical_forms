@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+# copies made when packaging the skill
+skills/write-from-forms/prompts/
+skills/*.zip

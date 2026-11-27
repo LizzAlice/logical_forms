@@ -1,0 +1,122 @@
+Here is my whole forms file and a passage of text.
+
+In evidence, a value that does not start with P-, DEF-, ART-, SET- or SEC- is not a form
+id: it is a run label, or the entry stated, which marks a limitation that rests on the
+author's own knowledge.
+
+The text could report: <section ids or form ids>
+The text was requested in mode: <strict | creative>
+The text was written on: <YYYY-MM-DD>
+Mapping table (creative mode, if the text uses stand-ins): <table>
+For each sentence of the text, and for each table row and caption, output a row:
+sentence | form ids | form wording | verdicts | note.
+Judge a table row as the sentences its cells make with the row label and the column
+headers.
+Give the sentence in full. In "form wording", copy from the forms the text of the
+fields the sentence states, for every carrying sentence that is not a word-for-word
+copy. Read every stand-in as the thing it stands for.
+
+Before you judge a sentence, write down for yourself what it asserts, clause by
+clause. Only then look at the forms.
+
+Verdicts:
+- supported: says what the cited forms say, within their scope, and no other verdict
+  applies
+- drifted: the rewording changed the meaning. A content word (the verb, or a noun or
+  adjective that says what the statement is about) was replaced by another; a
+  quantifier, negation, "only", "at least", "alone or tied", a comparative, a word of
+  possibility, a qualifier or the tense changed; or a part of the form was left out
+  whose absence changes what a reader takes away. Test a sentence that carries several
+  forms against each of them separately; a short label for a form ("the doubled gain")
+  is a rewording. Also a form with wording: fixed that was not copied word for word. In strict mode test both directions: the form must say
+  everything the sentence says, and the sentence must keep everything a reader needs
+  in order not to be misled. In creative mode the sentence may leave out numbers and
+  detail, but not a hedge, a limit or a qualifier.
+- overclaimed: true but stated beyond scope, or asserts something in not_supported, or
+  uses a register stronger than status allows (see the list below). A claim takes its
+  scope from the results underneath it, followed through derived_from; a claim with no
+  result underneath is judged against its statement and its not_supported.
+- unsupported: no form covers it, or only a note field does. Also a relation between
+  forms that no field records (allowed: derived_from, evidence, follows, uses,
+  includes, affects, resolved_by, replaced_by, answered_by). Look at every "so",
+  "therefore", "because", "since", "despite" and "although", also where it joins two
+  halves of one form that the form joins with a semicolon or "and"; at what "this"
+  points to in "this suggests" or "this shows"; and at an opening "So" or "therefore"
+  before a step. And in creative mode a qualitative statement that no form makes in
+  those terms
+- contradicted: a form says otherwise
+- altered: a number, path, version or name differs from the form (rounded,
+  approximated, reformatted, converted or spelled out)
+- unhedged: reports a result or claim that a limitation covers, and the limitation is
+  not stated in the same passage at or before this sentence. Give it to the first such
+  sentence of the passage only. A passage is the text under one top-level heading
+  with its subsections; without headings, a paragraph; an abstract or summary is its
+  own passage. In an abstract or summary of a text with a body, only a major
+  limitation counts, provided the body states the others. A limitation without
+  severity is minor
+- off-target: reports a form that is outside what the text could report, where none of
+  those forms needs it (a def for a term, a setup or artifact for a value, a covering
+  limitation, something one of them rests on)
+- stale: a cited form's updated is later than the date the text was written
+- unsourced: states a form with status unsourced, or reports a claim that rests on one,
+  directly or through other claims, whether or not it carries a marker
+- term: calls the thing a def's term names by a string from that def's avoid list. The
+  same string used for something else, or inside a string from use, is not a violation.
+  Defs with status retired are ignored.
+- link: marked [link], and states or implies nothing that a form could support or
+  contradict: no number, outcome, cause, comparison or judgement
+- frame: creative mode only. Marked [frame], and states or implies nothing that a form
+  could support or contradict.
+A sentence marked [link] or [frame] that does state or imply something about what the
+forms describe gets the verdicts it would get without the mark. In strict mode the
+frame verdict does not exist: a sentence marked [frame], or any unmarked sentence that
+no form backs, is unsupported.
+
+Give a sentence every verdict that applies, separated by commas. supported, link and
+frame only stand alone.
+
+Register that each status allows:
+- established → plain assertion
+- preliminary → hedged; a preliminary claim also needs the scope of the results under
+  it, in the sentence or earlier in the passage
+- assumed → marked as an assumption
+- unsourced, and any claim resting on an unsourced one → only with a
+  [CITATION NEEDED: <id>] marker
+- open, and a planned artifact or setup → open question or future work only
+- closed → not written
+- refuted → not written, except as an explicit correction
+- outdated (a claim) → only as what held for the earlier setup or artifact version,
+  named as such; never as a finding about the current work
+- resolved (a limitation) → only as a hedge, in the past tense
+- superseded (an artifact or setup) → only as the earlier version a cited result was
+  produced with
+- retired → never as something the work uses
+
+A limitation covers the forms named in its affects and every form that rests on one of
+them, through any number of steps: a claim rests on the forms in its derived_from, a
+result on the forms in its evidence, a setup on the forms in its includes and
+components. Sections play no part. A refuted limitation covers nothing.
+
+Judge only against the forms. Do not use outside knowledge. Do not assume a sentence is
+right because it sounds plausible. Sentence by sentence, not paragraph by paragraph.
+
+After the table:
+
+1. For every passage, list the limitations that cover a result or claim the passage
+   reports, and say for each where the passage states it. Report a major one that is
+   missing, or that has no sentence of its own, as
+   "missing major limitation: <id> in <passage>".
+2. List every assumption that a reported claim rests on, directly or through other
+   claims, and that does not have surface: no. Say for each whether the text states it
+   as an assumption, and report each one that is not stated as
+   "missing assumption: <id>".
+3. If the mode is creative, list every form that the text as a whole puts right
+   although the forms do not: an open question shown as answered, a limitation shown as
+   overcome, a refuted form shown as true, a preliminary claim, or a weak or failed result,
+   shown as a success. Report each as "repaired: <id>".
+4. If the mode is creative, list every stand-in used for two things, every thing with
+   two stand-ins, and every stand-in missing from the mapping table. Report each as
+   "stand-in: <name>".
+5. List every table cell that no cited form fills, and every value that was computed
+   or carried over. Report each as "table: <table>, <row>, <column>". For an abstract,
+   list the minor limitations it leaves out and where the body states each.
